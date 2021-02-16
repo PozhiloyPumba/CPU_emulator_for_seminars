@@ -180,7 +180,7 @@ void mov(char* string)
     if (register_or_not(string))
     {
         arg2 = what_the_register(string);
-        printf("arg1 = %d\n", arg1);
+        
         if(arg2 == -1)
         {
             printf("undefined register\n");
