@@ -66,10 +66,8 @@ int main()
                 break;
             default:
                 printf("undefined command\n");
-                scanf("%s", str);       // опасное место если не три аргумента введено в предыдущей строке
-                scanf("%s", str);
-                scanf("%s", str);
-                continue;
+                if(str[strlen(str) - 1] != '\n')
+			while(getchar() != '\n');
         }
 
         print_regs(registers);
@@ -158,8 +156,11 @@ int what_the_register(char* string)
             if(!strcmp(string, "edx,") || !strcmp(string, "edx")) 
                 code = 3;
             break;
-        default:;
+        default:
+		printf("undefined register\n");
     }
+    if (code == -1)
+	printf("undefined register\n");
 
     return code;
 }
@@ -180,7 +181,7 @@ void mov(char* string)
     if (register_or_not(string))
     {
         arg2 = what_the_register(string);
-        
+
         if(arg2 == -1)
         {
             printf("undefined register\n");
